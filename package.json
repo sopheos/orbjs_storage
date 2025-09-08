@@ -1,0 +1,17 @@
+{
+  "name": "@sopheos/orbjs_storage",
+  "version": "1.0.0",
+  "description": "Helpers for Local/Session/Cookie storage with fallback",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sopheos/orbjs_storage.git"
+  },
+  "author": "Lucas Schnoebelen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sopheos/orbjs_storage/issues"
+  },
+  "homepage": "https://github.com/sopheos/orbjs_storage#readme"
+}
