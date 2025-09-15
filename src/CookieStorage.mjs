@@ -1,6 +1,6 @@
-import { MemoryStorage } from "./MemoryStorage";
+import { MemoryStorage } from "./MemoryStorage.mjs";
 
-export default class CookieStorage {
+export class CookieStorage {
   name = "cookieStorage";
   #prefix = "EC868";
   #storage;

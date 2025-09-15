@@ -2,8 +2,11 @@
   "name": "@sopheos/orbjs_storage",
   "version": "1.0.0",
   "description": "Helpers for Local/Session/Cookie storage with fallback",
-  "main": "index.js",
+  "exports": "./index.mjs",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sopheos/orbjs_storage.git"

@@ -1,15 +1,15 @@
-import { CookieStorage } from "./CookieStorage";
-import { MemoryStorage } from "./MemoryStorage";
+import { CookieStorage } from "./CookieStorage.mjs";
+import { MemoryStorage } from "./MemoryStorage.mjs";
 
-export default class SessionStorage {
-  name = "sessionStorage";
+export class LocalStorage {
+  name = "localStorage";
   #prefix;
   #storage;
 
   constructor(prefix) {
-    this.#prefix = prefix;
+    this.prefix = prefix;
 
-    if (SessionStorage.isSupported) {
+    if (LocalStorage.isSupported) {
       this.#storage = this;
     } else if (CookieStorage.isSupported) {
       this.#storage = new CookieStorage();
@@ -24,9 +24,9 @@ export default class SessionStorage {
 
   static get isSupported() {
     try {
-      const key = "Ai6VttYuW0";
-      window.sessionStorage.setItem(key, true);
-      window.sessionStorage.removeItem(key);
+      const key = "WbhAnImMkw";
+      window.localStorage.setItem(key, true);
+      window.localStorage.removeItem(key);
       return true;
     } catch {
       return false;
@@ -34,17 +34,19 @@ export default class SessionStorage {
   }
 
   get(field) {
-    const name = this.#storage instanceof CookieStorage ? `S-${field}` : field;
+    const name = this.#storage instanceof CookieStorage ? `L-${field}` : field;
     return this.#storage._getItem(name);
   }
 
   set(field, data) {
-    const name = this.#storage instanceof CookieStorage ? `S-${field}` : field;
-    this.#storage._setItem(name, data);
+    const name = this.#storage instanceof CookieStorage ? `L-${field}` : field;
+    this.#storage._setItem(name, data, {
+      maxAge: 3600 * 24 * 365,
+    });
   }
 
   remove(field) {
-    const name = this.#storage instanceof CookieStorage ? `S-${field}` : field;
+    const name = this.#storage instanceof CookieStorage ? `L-${field}` : field;
     this.#storage._removeItem(name);
   }
 
@@ -54,7 +56,7 @@ export default class SessionStorage {
 
   _getItem(field) {
     const item =
-      window.sessionStorage.getItem(`${this.#prefix}-${field}`) ?? null;
+      window.localStorage.getItem(`${this.#prefix}-${field}`) ?? null;
     return item ? JSON.parse(item) : null;
   }
 
@@ -63,13 +65,13 @@ export default class SessionStorage {
       return this._removeItem(field);
     }
 
-    window.sessionStorage.setItem(
+    window.localStorage.setItem(
       `${this.#prefix}-${field}`,
       JSON.stringify(data),
     );
   }
 
   _removeItem(field) {
-    window.sessionStorage.removeItem(`${this.#prefix}-${field}`);
+    window.localStorage.removeItem(`${this.#prefix}-${field}`);
   }
 }
