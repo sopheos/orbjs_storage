@@ -7,7 +7,7 @@ export class LocalStorage {
   #storage;
 
   constructor(prefix) {
-    this.prefix = prefix;
+    this.#prefix = prefix;
 
     if (LocalStorage.isSupported) {
       this.#storage = this;
