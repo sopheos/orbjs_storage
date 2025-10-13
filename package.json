@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/sopheos/orbjs_storage#readme",
   "devDependencies": {
-    "tsc": "^2.0.4",
     "typescript": "^5.9.3"
   }
 }
