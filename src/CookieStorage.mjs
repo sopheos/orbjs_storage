@@ -1,5 +1,18 @@
 import { MemoryStorage } from "./MemoryStorage.mjs";
 
+/**
+ * @typedef CookieOption
+ * @type {object}
+ * @property {string | null} [expires] A GMT date
+ * @property {number | null} [maxAge] In second
+ * @property {number | null} [domain]
+ * @property {string} [path]
+ * @property {boolean} [secure]
+ * @property {boolean} [httpOnly]
+ * @property {"lax" | "strict" | "none"} [sameSite]
+ * @property {boolean} [partitioned]
+ */
+
 export class CookieStorage {
   name = "cookieStorage";
   #prefix = "EC868";
@@ -24,10 +37,16 @@ export class CookieStorage {
     }
   }
 
+  /**
+   * @returns {string}
+   */
   get type() {
     return this.#storage.name;
   }
 
+  /**
+   * @returns {boolean}
+   */
   get isSupported() {
     try {
       const key = "SBMSw5N1tf";
@@ -39,18 +58,34 @@ export class CookieStorage {
     }
   }
 
+  /**
+   * @param {string} field
+   * @returns {any}
+   */
   get(field) {
     return this.#storage._getItem(field);
   }
 
+  /**
+   * @param {string} field 
+   * @param {any} data 
+   * @param {CookieOption} [options] 
+   */
   set(field, data, options = {}) {
     this.#storage._setItem(field, data, options);
   }
 
+  /**
+   * @param {string} field
+   * @param {CookieOption} options
+   */
   remove(field, options = {}) {
     this.#storage._removeItem(field, options);
   }
 
+  /**
+   * @returns {Record<string, any>}
+   */
   all() {
     return this.#storage._allItem();
   }

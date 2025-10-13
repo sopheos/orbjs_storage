@@ -6,6 +6,9 @@ export class LocalStorage {
   #prefix;
   #storage;
 
+  /**
+   * @param {string} prefix
+   */
   constructor(prefix) {
     this.#prefix = prefix;
 
@@ -18,10 +21,16 @@ export class LocalStorage {
     }
   }
 
+  /**
+   * @returns {string}
+   */
   get type() {
     return this.#storage.name;
   }
 
+  /**
+   * @returns {boolean}
+   */
   static get isSupported() {
     try {
       const key = "WbhAnImMkw";
@@ -33,11 +42,19 @@ export class LocalStorage {
     }
   }
 
+  /**
+   * @param {string} field 
+   * @returns {any}
+   */
   get(field) {
     const name = this.#storage instanceof CookieStorage ? `L-${field}` : field;
     return this.#storage._getItem(name);
   }
 
+  /**
+   * @param {string} field 
+   * @param {any} data
+   */
   set(field, data) {
     const name = this.#storage instanceof CookieStorage ? `L-${field}` : field;
     this.#storage._setItem(name, data, {
@@ -45,6 +62,9 @@ export class LocalStorage {
     });
   }
 
+  /**
+   * @param {string} field 
+   */
   remove(field) {
     const name = this.#storage instanceof CookieStorage ? `L-${field}` : field;
     this.#storage._removeItem(name);
