@@ -72,12 +72,18 @@ export class SessionStorage {
   // Private
   //--------------------------------------------------------------------------
 
+  /**
+   * @private
+   */
   _getItem(field) {
     const item =
       window.sessionStorage.getItem(`${this.#prefix}-${field}`) ?? null;
     return item ? JSON.parse(item) : null;
   }
 
+  /**
+   * @private
+   */
   _setItem(field, data) {
     if (data === null) {
       return this._removeItem(field);
@@ -89,6 +95,9 @@ export class SessionStorage {
     );
   }
 
+  /**
+   * @private
+   */
   _removeItem(field) {
     window.sessionStorage.removeItem(`${this.#prefix}-${field}`);
   }

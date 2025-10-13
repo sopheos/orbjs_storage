@@ -43,18 +43,30 @@ export class MemoryStorage {
   // Private
   //--------------------------------------------------------------------------
 
+  /**
+   * @private
+   */
   _getItem(field) {
     return this.#data[field] ?? null;
   }
 
+  /**
+   * @private
+   */
   _setItem(field, data) {
     this.#data[field] = data;
   }
 
+  /**
+   * @private
+   */
   _removeItem(field) {
     delete this.#data[field];
   }
 
+  /**
+   * @private
+   */
   _allItem() {
     return this.#data;
   }

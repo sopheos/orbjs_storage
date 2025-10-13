@@ -94,6 +94,9 @@ export class CookieStorage {
   // Private
   //--------------------------------------------------------------------------
 
+  /**
+   * @private
+   */
   _allItem() {
     if (document.cookie === "") return {};
 
@@ -123,11 +126,17 @@ export class CookieStorage {
     return output;
   }
 
+  /**
+   * @private
+   */
   _getItem(field) {
     const cookies = this._allItem();
     return cookies[field] ?? null;
   }
 
+  /**
+   * @private
+   */
   _setItem(field, data, options = {}) {
     const config = { ...this.#options, ...options };
 
@@ -192,6 +201,9 @@ export class CookieStorage {
     document.cookie = `${cookieParts.join("; ")};`;
   }
 
+  /**
+   * @private
+   */
   _removeItem(field, options = {}) {
     const config = {
       ...options,
@@ -202,12 +214,18 @@ export class CookieStorage {
     this._setItem(field, "", config);
   }
 
+  /**
+   * @private
+   */
   #encode(value) {
     return String(value).replace(/[,;"\\=\s%]/g, (character) => {
       return encodeURIComponent(character);
     });
   }
 
+  /**
+   * @private
+   */
   #decode(value) {
     return decodeURIComponent(value);
   }

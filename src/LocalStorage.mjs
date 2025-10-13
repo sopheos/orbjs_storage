@@ -74,12 +74,18 @@ export class LocalStorage {
   // Private
   //--------------------------------------------------------------------------
 
+  /**
+   * @private
+   */
   _getItem(field) {
     const item =
       window.localStorage.getItem(`${this.#prefix}-${field}`) ?? null;
     return item ? JSON.parse(item) : null;
   }
 
+  /**
+   * @private
+   */
   _setItem(field, data) {
     if (data === null) {
       return this._removeItem(field);
@@ -91,6 +97,9 @@ export class LocalStorage {
     );
   }
 
+  /**
+   * @private
+   */
   _removeItem(field) {
     window.localStorage.removeItem(`${this.#prefix}-${field}`);
   }
