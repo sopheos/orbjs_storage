@@ -1,18 +1,16 @@
 {
   "name": "@sopheos/orbjs_storage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Helpers for Local/Session/Cookie storage with fallback",
-  "exports": "./dist/index.mjs",
+  "exports": "./index.mjs",
+  "types": "./index.d.mts",
   "type": "module",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "build": "(bash -c \"rm -r ./dist\" && npx tsc) || npx tsc"
+    "build": "(bash -c \"find . -type f -name '*.d.mts' -delete\" && npx tsc) || npx tsc"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sopheos/orbjs_storage.git"
