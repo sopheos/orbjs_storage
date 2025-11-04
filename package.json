@@ -1,6 +1,6 @@
 {
   "name": "@sopheos/orbjs_storage",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Helpers for Local/Session/Cookie storage with fallback",
   "exports": "./index.mjs",
   "types": "./index.d.mts",

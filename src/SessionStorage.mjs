@@ -78,7 +78,11 @@ export class SessionStorage {
   _getItem(field) {
     const item =
       window.sessionStorage.getItem(`${this.#prefix}-${field}`) ?? null;
-    return item ? JSON.parse(item) : null;
+    try {
+      return item ? JSON.parse(item) : null;
+    } catch {
+      return null
+    }
   }
 
   /**

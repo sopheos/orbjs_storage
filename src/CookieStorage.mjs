@@ -219,7 +219,11 @@ export class CookieStorage {
    */
   #encode(value) {
     return String(value).replace(/[,;"\\=\s%]/g, (character) => {
-      return encodeURIComponent(character);
+        try {
+            return encodeURIComponent(character);
+        } catch {
+            return ""
+        }
     });
   }
 
@@ -227,6 +231,10 @@ export class CookieStorage {
    * @private
    */
   #decode(value) {
-    return decodeURIComponent(value);
+    try {
+        return decodeURIComponent(value);
+    } catch {
+        return ""
+    }
   }
 }
