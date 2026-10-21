@@ -11,15 +11,15 @@
  * @property {boolean} [partitioned]
  */
 export class CookieStorage {
+    /**
+     * @returns {boolean}
+     */
+    static get isSupported(): boolean;
     name: string;
     /**
      * @returns {string}
      */
     get type(): string;
-    /**
-     * @returns {boolean}
-     */
-    get isSupported(): boolean;
     /**
      * @param {string} field
      * @returns {any}

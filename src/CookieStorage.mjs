@@ -47,7 +47,7 @@ export class CookieStorage {
   /**
    * @returns {boolean}
    */
-  get isSupported() {
+  static get isSupported() {
     try {
       const key = "SBMSw5N1tf";
       document.cookie = `${key}=; Path=/`;
